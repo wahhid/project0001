@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_project_0001_res_partner_inherit_tree_view">
+            <field name="name">jakc.project.0001.res.partner.inherit.tree.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="partner_type_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

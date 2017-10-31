@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_action_partner_type"
+                  name="Partner Type"
+                  parent="base.menu_base_config"
+                  action="action_res_partner_type"
+                  groups="product.group_sale_pricelist"
+                  sequence="70"/>
+
+    </data>
+</openerp>

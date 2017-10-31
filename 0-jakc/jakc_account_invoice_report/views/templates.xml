@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+
+        <template id="assets_backend" name="module_name assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/jakc_account_invoice_report/static/src/css/jakc_account_invoice_report.css"/>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

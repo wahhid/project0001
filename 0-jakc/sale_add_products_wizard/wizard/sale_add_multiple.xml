@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_add_multiple_view">
+            <field name="name">sale.order.add_multiple.form</field>
+            <field name="model">sale.order.add_multiple</field>
+            <field name="arch" type="xml">
+                <form string="Add Multiple">
+                    <group>
+                        <field name="quantity_type"/>
+                        <field name="quantity" attrs="{'invisible': [('quantity_type','!=','fixed')]}"/>
+                        <field name="method_type"/>
+                        <field name="products_ids" attrs="{'invisible':[('method_type','!=','product')]}"/>
+                        <field name="stock_quant_ids" attrs="{'invisible':[('method_type','!=','quant')]}">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </group>
+                <footer>
+                    <button name="add_multiple" type="object" class="oe_highlight" string="Process"/>
+                    or 
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_add_multiple">
+            <field name="name">Sale Order Add Multiple</field>
+            <field name="res_model">sale.order.add_multiple</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sale_order_add_multiple_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="res_partner_type_tree_view">
+            <field name="name">res.partner.type.tree</field>
+            <field name="model">res.partner.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="discount"/>
+                    <field name="pricelist_id"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="res_partner_type_form_view">
+            <field name="name">res.partner.type.form</field>
+            <field name="model">res.partner.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="trans_confirm" string="Confirm" type="object" states="draft"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="discount"/>
+                            <field name="pricelist_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Products" attrs="{'invisible':[('state','=','draft')]}">
+                                 <field name="partner_type_product_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="product_pricelist_item_id"/>
+                                    </tree>
+                                 </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_res_partner_type">
+            <field name="name">Partner Type</field>
+            <field name="res_model">res.partner.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <record model="ir.ui.view" id="view_res_partner_type_product_form">
+            <field name="name">res.partner.type.product.form</field>
+            <field name="model">res.partner.type.product</field>
+            <field name="arch" type="xml">
+                <form string="Partner Type Product">
+                    <group>
+                        <field name="type"/>
+                        <field name="product_id" attrs="{'invisible':[('type','!=','product')]}"/>
+                        <field name="product_category_id" attrs="{'invisible':[('type','!=','category')]}"/>
+                        <field name="product_merk_id" attrs="{'invisible':[('type','!=','merk')]}"/>
+                        <field name="product_pricelist_item_id" attrs="{'readonly':True}"/>
+                    </group>
+                </form>
+            </field>
+         </record>
+
+        <record model="ir.ui.view" id="res_partner_type_res_partner_inherit_form_view">
+            <field name="name">res.partner.type.res.partner.inherit.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='phone']" position="before">
+                    <field name="partner_type_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

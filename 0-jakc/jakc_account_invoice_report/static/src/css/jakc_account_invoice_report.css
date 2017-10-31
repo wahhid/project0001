@@ -1,0 +1,5 @@
+tr {
+width: 100%;
+display: inline-table;
+height:60px;                // <-- the rows height
+}

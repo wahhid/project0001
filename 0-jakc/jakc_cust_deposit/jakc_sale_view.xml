@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="cust_deposit_sale_order_tree_inherit_view">
+            <field name="name">cust.deposit.sale.order.tree.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="iface_deposit"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cust_deposit_sale_order_inherit_view">
+            <field name="name">cust.deposit.sale.order.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="replace">
+                    <field name="partner_id"  position="attributes" on_change="onchange_partner_id_2(partner_id, iface_deposit, cust_deposit_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}"/>
+                </field>
+                <field name="pricelist_id" position="before">
+                    <field name="iface_deposit"
+                           on_change="onchange_iface_deposit(iface_deposit, partner_id)"/>
+                    <field name="cust_deposit_id"
+                           attrs="{'invisible':[('iface_deposit','=', False)],'required':[('iface_deposit','=', True)]}"
+                           on_change="onchange_cust_deposit_id(cust_deposit_id)"/>
+                    <field name="rest_amount"
+                           attrs="{'invisible':[('iface_deposit','=', False)]}" />
+                </field>
+                <!--
+                <field name="pricelist_id" position="attributes">
+                    <attribute name="attrs">{'readonly': [('iface_deposit','=', True)]}</attribute>
+                </field>
+                -->
+            </field>
+        </record>
+    </data>
+</openerp>

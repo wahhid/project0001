@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_custdeposit">
+    <t t-call="report.html_container">
+        <t t-call="report.internal_layout">
+            <div class="page">
+                <h2>Customer Deposit</h2><div class="row mt32">
+                    <div class="col-xs-3">
+                        <strong>Company</strong>:<br />
+                    </div>
+                    <div class="col-xs-3">
+                        <strong>Print Date</strong>:<br />
+                    </div>
+                </div>
+
+
+                <div class="row mb32">
+                    <div class="col-xs-3">
+                        <strong>Start Period</strong>:<br/>
+                    </div>
+                    <div class="col-xs-3">
+                        <strong>End Period</strong>:<br/>
+                    </div>
+                </div>
+
+	           	<div t-foreach="selected_partners(data['form'])" t-as="partner">
+	           		<div>
+	           			<strong>
+		           			<span>Customer : [ <b t-esc="partner['name']"/> ]</span>
+	           			</strong>
+	           		</div>
+
+	           		<table class="table table-condensed">
+	                    <thead>
+							<th><strong>Name</strong></th>
+	                        <th><strong>Debit</strong></th>
+	                        <th><strong>Credit</strong></th>
+	                    </thead>
+	                    <tbody>
+	                        <tr t-foreach="account_move_lines(partner['id'])" t-as="line_ids">
+								<td>
+									<span t-esc="line_ids['name']"/>
+								</td>
+	                            <td>
+	                                <span t-esc="line_ids['debit']"/>
+	                            </td>
+	                            <td>
+	                                <span t-esc="line_ids['credit']"/>
+	                            </td>
+	                        </tr>
+	                    </tbody>
+                	</table>
+	           	</div>
+       		</div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

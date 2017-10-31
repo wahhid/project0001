@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+        <template id="account_invoice_external_layout">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="jakc_account_invoice_report.account_invoice_external_layout_header"/>
+            <t t-raw="0" />
+        </template>
+
+        <template id="account_invoice_external_layout_header">
+            <div class="header">
+                <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 60px;"/>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div clss="row">
+                                        <span t-field="company.name"/>
+                                    </div>
+                                    <div class="row">
+                                         <span t-field="company.street"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <span style="font-size:10px" t-field="o.create_uid.name"/>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <span style="font-size:10px">Cara Bayar</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <span style="font-size:10px">:</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <span style="font-size:10px" t-esc="o.sale_ids[0].payment_term.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    P-<span style="font-size:10px" t-field="o.printed_number"/>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <span style="font-size:10px">Status</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <span style="font-size:10px">:</span>
+                                        </div>
+                                        <div class="col-xs-4">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                   <span style="font-size:10px"><strong>Tgl Faktur</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.date_invoice"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                   <span style="font-size:10px"><strong>No. Faktur</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.number"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span style="font-size:10px"><strong>Pelanggan</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.partner_id.name"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span style="font-size:10px"><strong>Alamat Toko</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.partner_id.street"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span style="font-size:10px"><strong>Alamat Kirim</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.partner_id.street"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span style="font-size:10px"><strong>Print #</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" t-field="o.printed_number"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span style="font-size:10px"><strong>Page</strong></span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <span style="font-size:10px" class="page"/> <span  style="font-size:10px">of</span> <span style="font-size:10px" class="topage"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </template>
+
+        <template id="account_invoice_external_layout_footer">
+            <div class="footer">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <span style="font-size:10px"><strong>Hormat Kami</strong></span>
+                    </div>
+                    <div class="col-xs-3">
+                        <span style="font-size:10px"><strong>Penerima</strong></span>
+                    </div>
+                    <div class="col-xs-3">
+                        <span style="font-size:10px"><strong>Comment:</strong></span>
+                        <span style="font-size:10px" t-field="o.comment"/>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span style="font-size:10px"><strong>PPN 10%</strong></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span style="font-size:10px"><strong>Potongan</strong></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_discount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span style="font-size:10px"><strong>Biaya</strong></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span style="font-size:10px"><strong>Total Akhir</strong></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_account_invoice">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="jakc_account_invoice_report.account_invoice_external_layout">
+                        <div class="page">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kode Item</th>
+                                        <th>Nama Item</th>
+                                        <th>Lot</th>
+                                        <th>Jml</th>
+                                        <th class="text-right">Harga</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <t t-set="no" t-value="0"/>
+                                    <t t-set="rowrepeat" t-value="0"/>
+                                    <t t-set="rowsubtotal" t-value="0"/>
+                                    <t t-foreach="o.invoice_line" t-as="l">
+                                        <t t-if="l.quantity != 0">
+                                            <tr>
+                                                <td><span t-esc="no"/></td>
+                                                <td><span t-field="l.product_id.default_code"/></td>
+                                                <td>
+                                                    <span t-field="l.product_id.name"/>-
+                                                    <span t-field="l.product_id.merk_id.name"/>-
+                                                    <span t-field="l.product_id.warna"/>-
+                                                    <span t-field="l.product_id.motif"/>-
+                                                    <span t-field="l.product_id.page"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.lot_formatted_note"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.quantity"/>
+                                                    <span t-field="l.uos_id"  groups="product.group_uom"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-field="l.price_unit"/>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                                    <t t-set="rowsubtotal" t-value="rowsubtotal + l.price_subtotal"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <div class="row last-page">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <span style="font-size:10px">Terbilang : </span>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <span style="font-size:10px" t-esc="o.terbilang"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <div class="row">
+                                            <span style="font-size:10px"><strong>Hormat Kami</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="row">
+                                            <span style="font-size:10px"><strong>Penerima</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" style="border: 1px solid black;margin: 0;">
+                                        <div class="row">
+                                            <span style="font-size:10px"><strong>Comment:</strong></span>
+                                        </div>
+                                        <div class="row">
+                                            <span style="font-size:10px" t-field="o.comment"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <span style="font-size:10px"><strong>PPN 10%</strong></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <span style="font-size:10px"><strong>Potongan</strong></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_discount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <span style="font-size:10px"><strong>Biaya</strong></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <span style="font-size:10px"><strong>Total Akhir</strong></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <strong><span class="pull-right" style="font-size:10px" t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+                </t>
+
+            </t>
+        </template>
+        <!--
+        <template id="report_account_invoice">
+            <t t-call="jakc_account_invoice_report.report_account_invoice_document"/>
+        </template>
+        -->
+</data>
+</openerp>

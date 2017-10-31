@@ -1,0 +1,25 @@
+{
+    'name': 'Jakc Labs - Partner Type',
+    'version': '9.0.0.1.0',
+    'category': 'General',
+    'license': 'AGPL-3',
+    'summary': 'Partner Type',
+    'author': "Jakc Labs,Odoo Community Association (OCA)",
+    'website': 'http://www.jakc-labs.com/',
+    'depends': [
+        'base',
+        'account',
+        'account_voucher',
+        'sale',
+        'product',
+        'jakc_product',
+    ],
+    'data': [
+        'views/res_partner_type_view.xml',
+        'views/res_partner_view.xml',
+        'views/pricelist_view.xml',
+        'views/res_partner_type_menu.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

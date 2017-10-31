@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_project_0001_stock_account_inherit_form_view">
+            <field name="name">jakc.project.0001.stock.account.inherit.form.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock_account.view_picking_inherit_form2" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Create Invoice']" position="attributes">
+                    <attribute name="groups">account.group_account_user</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

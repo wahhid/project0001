@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <menuitem id="base.menu_sale_report" name="Report" parent="base.menu_base_partner" sequence="9"/>
+        <menuitem action="action_sale_report_form" id="menu_sale_report" parent="base.menu_sale_report" sequence="1" groups="base.group_sale_salesman,base.group_sale_manager"/>
+        <menuitem action="action_sale_report_form" id="menu_reporting_sale_report" parent="base.next_id_64" sequence="11" groups="base.group_sale_salesman,base.group_sale_manager"/>
+    </data>
+</openerp>

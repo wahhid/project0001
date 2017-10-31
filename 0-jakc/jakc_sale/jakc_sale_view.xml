@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <menuitem
+            action="sale.action_quotations"
+            id="menu_stock_quotations"
+            parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
+
+        <record model="ir.ui.view" id="jakc_project_0001_sale_order_inherit_view">
+            <field name="name">jakc.project.0001.sale.order.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <field name="create_uid" attrs="{'readonly': 1}"/>
+                    <field name="write_uid" attrs="{'readonly': 1}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="jakc_sale_sale_order_tree_inherit_view">
+            <field name="name">jakc.sale.sale.order.tree.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="iface_able_to_read_amount_total" invisible="1"/>
+                </field>
+                <field name="amount_total" position="attributes">
+                    <attribute name="attrs">{'invisible':[('iface_able_to_read_amount_total','=', True)]}</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

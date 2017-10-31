@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>		
+		<record forcecreate="True" id="ir_cron_reset_purchase_order_action" model="ir.cron">
+			<field name="name">Reset Purchase Order Sequence Scheduler</field>
+			<field name="active">False</field>
+			<field name="user_id">1</field>
+			<field name="interval_number">1</field>
+			<field name="interval_type">months</field>
+			<field name="numbercall">-1</field>
+			<field name="doall">False</field>
+			<field name="model">reset.sequence</field>
+			<field name="function">purchase_number_update</field>
+		</record>
+		<record forcecreate="True" id="ir_cron_reset_sale_order_action" model="ir.cron">
+			<field name="name">Reset Sale Order Sequence Scheduler</field>
+			<field name="active">False</field>
+			<field name="user_id">1</field>
+			<field name="interval_number">1</field>
+			<field name="interval_type">months</field>
+			<field name="numbercall">-1</field>
+			<field name="doall">False</field>
+			<field name="model">reset.sequence</field>
+			<field name="function">sales_number_update</field>
+		</record>
+	</data>
+</openerp>

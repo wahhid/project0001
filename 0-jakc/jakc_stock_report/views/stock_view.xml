@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_stock_report_stock_picking_form_inherit_view">
+            <field name="name">jakc.stock.report.stock.picking.form.inherit.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+               <xpath expr="//header/field[@name='state']" position="before">
+                   <button name="trans_print_do" string="Print DO" type="object" states="assigned,done"/>
+                   <button name="trans_print_do_dropshipping" string="Print Dropshipping" type="object" states="assigned,done"/>
+               </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
