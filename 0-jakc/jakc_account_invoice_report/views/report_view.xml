@@ -39,29 +39,23 @@
                                         <div class="col-xs-4">
                                             <span style="font-size:10px">Cara Bayar</span>
                                         </div>
-                                        <div class="col-xs-4">
-                                            <span style="font-size:10px">:</span>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <span style="font-size:10px" t-esc="o.sale_ids[0].payment_term.name"/>
+                                        <div class="col-xs-8">
+                                            <span style="font-size:10px"> : </span><span style="font-size:10px" t-esc="o.payment_method"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    P-<span style="font-size:10px" t-field="o.printed_number"/>
+                                    <span style="font-size:10px">P-</span><span style="font-size:10px" t-field="o.printed_number"/>
                                 </div>
                                 <div class="col-xs-9">
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <span style="font-size:10px">Status</span>
                                         </div>
-                                        <div class="col-xs-4">
-                                            <span style="font-size:10px">:</span>
-                                        </div>
-                                        <div class="col-xs-4">
-
+                                        <div class="col-xs-8">
+                                            <span style="font-size:10px"> : </span><span style="font-size:10px" t-esc="o.sale_ids[0].state"/>
                                         </div>
                                     </div>
                                 </div>
@@ -106,15 +100,7 @@
                                     <span style="font-size:10px"><strong>Alamat Kirim</strong></span>
                                 </div>
                                 <div class="col-xs-8">
-                                    <span style="font-size:10px" t-field="o.partner_id.street"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <span style="font-size:10px"><strong>Print #</strong></span>
-                                </div>
-                                <div class="col-xs-8">
-                                    <span style="font-size:10px" t-field="o.printed_number"/>
+                                    <span style="font-size:10px" t-field="o.sale_ids[0].partner_shipping_id.street"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -191,8 +177,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Kode Item</th>
-                                        <th>Nama Item</th>
                                         <th>Lot</th>
+                                        <th>Nama Item</th>
                                         <th>Jml</th>
                                         <th class="text-right">Harga</th>
                                         <th class="text-right">Total</th>
@@ -204,18 +190,18 @@
                                     <t t-set="rowsubtotal" t-value="0"/>
                                     <t t-foreach="o.invoice_line" t-as="l">
                                         <t t-if="l.quantity != 0">
+                                            <t t-set="no" t-value="no + 1"/>
                                             <tr>
                                                 <td><span t-esc="no"/></td>
                                                 <td><span t-field="l.product_id.default_code"/></td>
                                                 <td>
+                                                    <span t-field="l.lot_formatted_note"/>
+                                                </td>
+                                                <td>
                                                     <span t-field="l.product_id.name"/>-
-                                                    <span t-field="l.product_id.merk_id.name"/>-
                                                     <span t-field="l.product_id.warna"/>-
                                                     <span t-field="l.product_id.motif"/>-
                                                     <span t-field="l.product_id.page"/>
-                                                </td>
-                                                <td>
-                                                    <span t-field="l.lot_formatted_note"/>
                                                 </td>
                                                 <td>
                                                     <span t-field="l.quantity"/>
@@ -245,9 +231,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <div class="row">
-                                            <span style="font-size:10px"><strong>Hormat Kami</strong></span>
-                                        </div>
+                                        <span style="font-size:10px"><strong>Hormat Kami</strong></span>
                                     </div>
                                     <div class="col-xs-3">
                                         <div class="row">
@@ -305,6 +289,7 @@
 
             </t>
         </template>
+
         <!--
         <template id="report_account_invoice">
             <t t-call="jakc_account_invoice_report.report_account_invoice_document"/>

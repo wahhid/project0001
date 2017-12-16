@@ -9,6 +9,11 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
+
+                <xpath expr="//header/*" position="inside">
+                    <button name="invoice_print" string="Print Invoice" type="object" attrs="{'invisible':[('state', '!=', 'paid')]}" groups="base.group_user"/>
+                </xpath>
+
                 <field name="currency_id" position="after">
                     <field name="create_uid" attrs="{'readonly': 1}"/>
                     <field name="write_uid" attrs="{'readonly': 1}"/>
