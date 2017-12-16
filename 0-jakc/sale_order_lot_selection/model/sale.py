@@ -88,6 +88,36 @@ class SaleOrderLine(models.Model):
         res['value']['last_lot_id'] = self._sale_order_line_product_last_lot(product, partner_id)
         return res
 
+    @api.multi
+    def product_id_change_with_wh_and_lot(
+            self, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, packaging=False,
+            fiscal_position=False, flag=False, warehouse_id=False, lot_id=False):
+
+        res = self.product_id_change_with_wh(
+            pricelist, product, qty=qty, uom=uom,
+            qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
+            lang=lang, update_tax=update_tax,
+            date_order=date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag,
+            warehouse_id=warehouse_id)
+
+        available_lots = []
+        location = self.env['stock.warehouse'].browse(
+            warehouse_id).lot_stock_id
+        # Search all lot existing lot for the product and location selected
+        quants = self.env['stock.quant'].read_group([
+            ('product_id', '=', product),
+            ('location_id', 'child_of', location.id),
+            ('qty', '>', 0),
+            ('lot_id', '!=', False),
+        ], ['lot_id'], 'lot_id')
+        available_lots = [quant['lot_id'][0] for quant in quants]
+        res.update({'domain': {'lot_id': [('id', 'in', available_lots)]}})
+        res['value']['lot_id'] = lot_id
+        res['value']['last_lot_id'] = self._sale_order_line_product_last_lot(product, partner_id)
+        return res
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
