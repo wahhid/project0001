@@ -11,7 +11,10 @@
         'stock_sale_order_line',
     ],
     'data': [
+        'report/report_stock_inventory.xml',
+        'report/report_stock_inventory_template.xml',
         'wizard/stock_transfer_details_view.xml',
+        'wizard/stock_inventory_view.xml',
     ],
     'installable': True,
     'application': True,
