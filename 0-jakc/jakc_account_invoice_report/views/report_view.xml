@@ -16,70 +16,74 @@
         <template id="account_invoice_external_layout_header">
             <div class="header">
                 <div class="row">
-                        <div class="col-xs-6">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 60px;"/>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 60px;"/>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <span t-esc="company.name"/>
                                 </div>
-                                <div class="col-xs-9">
-                                    <div clss="row">
-                                        <span t-field="company.name"/>
-                                    </div>
-                                    <div class="row">
-                                         <span t-field="company.street"/>
-                                    </div>
+                                <div class="row">
+                                    <span style="font-size:10px" t-esc="company.street"/>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <span style="font-size:10px" t-field="o.create_uid.name"/>
-                                </div>
-                                <div class="col-xs-9">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <span style="font-size:10px">Cara Bayar</span>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <span style="font-size:10px"> : </span><span style="font-size:10px" t-esc="o.payment_method"/>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <span style="font-size:10px" t-esc="o.create_uid.name"/>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <span style="font-size:10px">P-</span><span style="font-size:10px" t-field="o.printed_number"/>
-                                </div>
-                                <div class="col-xs-9">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <span style="font-size:10px">Status</span>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <span style="font-size:10px"> : </span><span style="font-size:10px" t-esc="o.sale_ids[0].state"/>
-                                        </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <span style="font-size:10px">Cara Bayar</span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <span style="font-size:10px"> : </span><span style="font-size:10px" t-esc="o.payment_method"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-xs-6">
-                            <div class="row">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <span style="font-size:10px">P-</span><span style="font-size:10px" t-esc="o.printed_number"/>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <span style="font-size:10px">Status</span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <t t-if="o.state == 'paid'">
+                                            <span style="font-size:10px"> : Paid</span>
+                                        </t>
+                                        <t t-if="o.state != 'paid'">
+                                            <span style="font-size:10px"> : Open</span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="row">
                                 <div class="col-xs-4">
                                    <span style="font-size:10px"><strong>Tgl Faktur</strong></span>
                                 </div>
                                 <div class="col-xs-8">
-                                    <span style="font-size:10px" t-field="o.date_invoice"/>
+                                    <span style="font-size:10px" t-esc="o.date_invoice"/>
                                 </div>
                             </div>
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-xs-4">
                                    <span style="font-size:10px"><strong>No. Faktur</strong></span>
                                 </div>
                                 <div class="col-xs-8">
-                                    <span style="font-size:10px" t-field="o.number"/>
+                                    <span style="font-size:10px" t-esc="o.number"/>
                                 </div>
                             </div>
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-xs-4">
                                     <span style="font-size:10px"><strong>Pelanggan</strong></span>
                                 </div>
@@ -87,7 +91,7 @@
                                     <span style="font-size:10px" t-field="o.partner_id.name"/>
                                 </div>
                             </div>
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-xs-4">
                                     <span style="font-size:10px"><strong>Alamat Toko</strong></span>
                                 </div>
@@ -95,7 +99,7 @@
                                     <span style="font-size:10px" t-field="o.partner_id.street"/>
                                 </div>
                             </div>
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-xs-4">
                                     <span style="font-size:10px"><strong>Alamat Kirim</strong></span>
                                 </div>
@@ -103,7 +107,7 @@
                                     <span style="font-size:10px" t-field="o.sale_ids[0].partner_shipping_id.street"/>
                                 </div>
                             </div>
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-xs-4">
                                     <span style="font-size:10px"><strong>Page</strong></span>
                                 </div>
@@ -111,8 +115,8 @@
                                     <span style="font-size:10px" class="page"/> <span  style="font-size:10px">of</span> <span style="font-size:10px" class="topage"/>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                </div>
             </div>
         </template>
 
@@ -172,7 +176,8 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="jakc_account_invoice_report.account_invoice_external_layout">
                         <div class="page">
-                            <table class="table table-condensed">
+                            <div class="row">
+                                <table class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -192,26 +197,26 @@
                                         <t t-if="l.quantity != 0">
                                             <t t-set="no" t-value="no + 1"/>
                                             <tr>
-                                                <td><span t-esc="no"/></td>
-                                                <td><span t-field="l.product_id.default_code"/></td>
-                                                <td>
+                                                <td style="white-space:nowrap;"><span t-esc="no"/></td>
+                                                <td style="white-space:nowrap;"><span t-field="l.product_id.default_code"/></td>
+                                                <td style="white-space:nowrap;">
                                                     <span t-field="l.lot_formatted_note"/>
                                                 </td>
-                                                <td>
+                                                <td style="overflow:hidden;white-space:nowrap;">
                                                     <span t-field="l.product_id.name"/>-
                                                     <span t-field="l.product_id.warna"/>-
                                                     <span t-field="l.product_id.motif"/>-
                                                     <span t-field="l.product_id.page"/>
                                                 </td>
-                                                <td>
+                                                <td style="white-space:nowrap;">
                                                     <span t-field="l.quantity"/>
                                                     <span t-field="l.uos_id"  groups="product.group_uom"/>
                                                 </td>
-                                                <td class="text-right">
+                                                <td style="white-space:nowrap;" class="text-right">
                                                     <span t-field="l.price_unit"/>
                                                 </td>
 
-                                                <td class="text-right">
+                                                <td style="white-space:nowrap;" class="text-right">
                                                     <span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
                                                     <t t-set="rowsubtotal" t-value="rowsubtotal + l.price_subtotal"/>
                                                 </td>
@@ -220,13 +225,11 @@
                                     </t>
                                 </tbody>
                             </table>
+                            </div>
                             <div class="row last-page">
                                 <div class="row">
-                                    <div class="col-xs-3">
-                                        <span style="font-size:10px">Terbilang : </span>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <span style="font-size:10px" t-esc="o.terbilang"/>
+                                    <div class="col-xs-12">
+                                        <span style="font-size:10px">Terbilang : </span><span style="font-size:10px" t-esc="o.terbilang"/>
                                     </div>
                                 </div>
                                 <div class="row">

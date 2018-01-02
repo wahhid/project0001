@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <report
             string="Invoice (Small)"
             id="action_report_account_invoice_custom"
