@@ -6,7 +6,10 @@ _logger = logging.getLogger(__name__)
 class stock_picking(osv.osv):
     _inherit = 'stock.picking'
 
-
+    _columns = {
+        'courier' : fields.char('Courier', size=100)
+    }
+    
     def trans_print_do(self, cr, uid, ids, context=None):
         """
          To get the date and print the report

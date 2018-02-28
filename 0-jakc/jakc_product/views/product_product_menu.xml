@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <openerp>
-	<data>
-		 <menuitem name="Product By Merk" id="menu_product_by_merk" action="action_product_merk"
+    <data>
+        <menuitem name="Product By Merk" id="menu_product_by_merk" action="action_product_merk"
             parent="stock.menu_stock_product" sequence="0" groups="base.group_no_one"/>
+
+        <menuitem name="Import Image" id="menu_product_image_import" action="action_product_image_import"
+            parent="stock.menu_stock_product" sequence="99" groups="base.group_no_one"/>
+
 	</data>
 </openerp>

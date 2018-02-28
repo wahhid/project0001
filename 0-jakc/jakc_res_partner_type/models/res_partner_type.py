@@ -160,3 +160,11 @@ class ResPartner(models.Model):
         self.property_product_pricelist = self.partner_type_id.pricelist_id.id
 
     partner_type_id = fields.Many2one('res.partner.type', 'Partner Type')
+    payment_method = fields.Selection([('cash','Cash'),('credit','Credit')],'Payment Method', default='Cash')
+    payment_method_id = fields.Many2one('res.partner.payment.method', 'Payment Method')
+
+
+class ResPartner(models.Model):
+    _name = 'res.partner.payment.method'
+
+    name = fields.Char('Name', size=50 , required=True)

@@ -7,6 +7,7 @@
     'init_xml' : [],
     'data' : [
         'views/report_view.xml',
+        'views/res_company_view.xml',
         'jakc_account_invoice_report.xml',
     ],
     'installable': True,

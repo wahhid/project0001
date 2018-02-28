@@ -60,6 +60,38 @@
                 </tree>
             </field>
         </record>
+
+        <!-- PRODUCT/IMAGE IMPORT -->
+        <record model="ir.ui.view" id="view_product_image_import_form">
+            <field name="name">product.image.import.form</field>
+            <field name="model">product.image.import</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Image Import">
+                    <header>
+                        <button name="process_image_import" string="Import" type="object" confirm="Are you sure to process?"/>
+                    </header>
+                	<sheet>
+	                    <group>
+	                        <field name="name"/>
+                            <field name="attachment"/>
+	                    </group>
+                	</sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_product_image_import_tree">
+            <field name="name">product.image.import.tree</field>
+            <field name="model">product.image.import</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Image Import">
+                    <field name="name"/>
+                    <field name="attachment"/>
+                </tree>
+            </field>
+        </record>
         
         <!-- PRODUCT/ACTION -->
         <!-- PRODUCT MERK -->
@@ -67,7 +99,14 @@
             <field name="name">Product Merk</field>
             <field name="res_model">product.merk</field>
             <field name="view_mode">tree,form</field>
-        </record>		
+        </record>
+
+         <!-- PRODUCT IMAGE IMPORT-->
+		<record model="ir.actions.act_window" id="action_product_image_import">
+            <field name="name">Image Import</field>
+            <field name="res_model">product.image.import</field>
+            <field name="view_mode">tree,form</field>
+        </record>
         
 
 

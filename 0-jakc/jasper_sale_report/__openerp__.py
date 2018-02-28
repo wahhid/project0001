@@ -6,8 +6,10 @@
     'depends' : ['sale'],
     'init_xml' : [],
     'data' : [
-        'sale_report_view.xml',
-        'sale_report_menu.xml',
+        'wizards/sale_report_view.xml',
+        'views/sale_report_menu.xml',
+        'reports/report_customer_sale_summary_view.xml',
+        'reports/report_customer_sale_summary.xml',
     ],
     'installable': True,
     'auto_install': False,

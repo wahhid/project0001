@@ -7,6 +7,9 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="courier"/>
+                </field>
                <xpath expr="//header/field[@name='state']" position="before">
                    <button name="trans_print_do" string="Print DO" type="object" states="assigned,done"/>
                    <button name="trans_print_do_dropshipping" string="Print Dropshipping" type="object" states="assigned,done"/>
